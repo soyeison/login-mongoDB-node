@@ -4,6 +4,15 @@ const bcryptjs = require("bcryptjs");
 const Usuario = require("../models/usuario");
 const { generarJWT } = require("../helpers/generar-jwt");
 
+const autenticarToken = async (req, res = response) => {
+  const usuario = req.usuario;
+  const token = req.header("x-token");
+  res.json({
+    usuario,
+    token,
+  });
+};
+
 const login = async (req, res = response) => {
   const { correo, contraseña } = req.body;
 
@@ -50,5 +59,6 @@ const login = async (req, res = response) => {
 };
 
 module.exports = {
+  autenticarToken,
   login,
 };
