@@ -29,6 +29,10 @@ class Server {
 
   middlewares() {
     this.app.use(cors());
+    this.app.use((req, res, next) => {
+      res.header("Access-Control-Allow-Origin", "*");
+      next();
+    });
 
     //Parseo el body a json
     this.app.use(express.json());
